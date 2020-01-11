@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 id="file"> Upload File</h1>
+    <input type="file" name="inpFile" id="inpFile">
+    <div class="image-preview" id="imagePreview">
+        
+        <span class="image-preview__default-text">Image Preview</span>
+
+    </div>
+    
+    <script>
+     const inpFile =  document.getElementById("inpFile");
+     const previewContainer = document.getElementById("imagePrview");
+     const previewImage = previewContainer.querySelector(".image-preview__image");
+     const previewDefaultText = previewContainer.querySelector("image-preview__default-text");
+
+     inpFile.addEventListener("change", function(){
+         const file = this.files[0];
+         if(file){
+             const reader = new FileReader();
+
+             previewDefaultText.style.display = "none";
+             previewImage.style.display = "block";
+
+             reader.addEventListener("load",function(){
+                 console.log(this);
+                 previewImage.setAttribute("src", this.result);
+             });
+             reader.readAsDataURL(file);
+
+
+         }
+     })
+    </script>
+
+</body>
+
+    
+</html>
